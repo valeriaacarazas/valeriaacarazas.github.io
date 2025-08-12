@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valeria Carazas — Data Analytics & AI Engineering</title>
+  <meta name="description" content="Portfolio website for Valeria Carazas — M.S. Mathematical & Statistical Sciences (Clemson). Bayesian predictive modeling, data analytics, AI engineering." />
+  <meta property="og:title" content="Valeria Carazas — Data Analytics & AI Engineering" />
+  <meta property="og:description" content="Bayesian predictive modeling · data analytics · AI engineering · Clemson M.S." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#f472b6" />
+
+  <!--
+    🔧 Quick Setup (replace placeholders and deploy)
+    1) Put this file on your site as index.html.
+    2) Place your resume PDF next to it and name it exactly: "ValCar Resume.pdf" (or update the link href).
+    3) Add a headshot image as headshot.jpg (square, ~800×800); or keep the initials avatar.
+    4) Update LinkedIn/GitHub links below.
+    5) Deploy with GitHub Pages (main branch /docs or root), Netlify, or Vercel.
+
+    Notes
+    - Color system is pink-forward with subtle gradients.
+    - Animations are motion-friendly and respect prefers-reduced-motion.
+    - Everything is in this single file: HTML, CSS, and JS.
+  -->
+
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --bg-2: #fdf2f8;
+      --text: #1f2937;
+      --subtle: #374151;
+      --muted: #6b7280;
+      --brand-50: #fdf2f8;
+      --brand-100: #fce7f3;
+      --brand-200: #fbcfe8;
+      --brand-300: #f9a8d4;
+      --brand-400: #f472b6;
+      --brand-500: #ec4899;
+      --brand-600: #db2777;
+      --ring: rgba(236, 72, 153, 0.25);
+      --card: #ffffff;
+      --shadow: 0 10px 25px rgba(236, 72, 153, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(236, 72, 153, 0.15), transparent 55%),
+        radial-gradient(1000px 500px at 110% 20%, rgba(244, 114, 182, 0.2), transparent 60%),
+        var(--bg);
+    }
+
+    a { color: var(--brand-600); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header / Nav */
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: linear-gradient(180deg, rgba(253, 242, 248, 0.9), rgba(253, 242, 248, 0.55), transparent);
+      border-bottom: 1px solid rgba(236, 72, 153, 0.15);
+    }
+    .nav {
+      max-width: 1120px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.2px; }
+    .logo {
+      width: 36px; height: 36px; border-radius: 12px;
+      background: conic-gradient(from 180deg, var(--brand-200), var(--brand-400), var(--brand-300));
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.75), 0 8px 20px rgba(236, 72, 153, 0.25);
+    }
+    nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+    nav a { font-weight: 600; color: #6b3c5a; }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--brand-400), var(--brand-500));
+      color: white; padding: 10px 16px; border-radius: 999px; border: none; cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(236, 72, 153, 0.22), 0 3px 8px rgba(0, 0, 0, 0.08); }
+
+    /* Hero */
+    .hero { max-width: 1120px; margin: 0 auto; padding: 56px 20px 16px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: center; }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding: 6px 10px; background: rgba(236, 72, 153, 0.08); color: #7c294f; border: 1px solid rgba(236, 72, 153, 0.25); border-radius: 999px; font-weight: 600; font-size: 12px; letter-spacing: 0.3px; }
+    .hero h1 { margin: 12px 0 8px; font-size: clamp(32px, 5vw, 56px); line-height: 1.04; letter-spacing: -0.02em; }
+    .hero p.lead { color: var(--subtle); font-size: clamp(16px, 2.4vw, 20px); max-width: 60ch; }
+    .hero-actions { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .headshot {
+      width: 220px; aspect-ratio: 1; border-radius: 24px; position: relative; overflow: hidden;
+      background:
+        radial-gradient(180px 120px at 65% 20%, rgba(255,255,255,0.6), transparent 60%),
+        linear-gradient(135deg, var(--brand-100), var(--brand-300));
+      box-shadow: var(--shadow);
+      display: grid; place-items: center; font-weight: 800; font-size: 64px; color: rgba(124, 41, 79, 0.75);
+      user-select: none;
+    }
+    .headshot img { width: 100%; height: 100%; object-fit: cover; display: none; }
+
+    /* Sections */
+    section { max-width: 1120px; margin: 0 auto; padding: 36px 20px; }
+    .section-title { font-size: 28px; margin: 0 0 16px; letter-spacing: -0.02em; }
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.98));
+      border-radius: var(--radius);
+      border: 1px solid rgba(236,72,153,0.18);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 20px 45px rgba(236, 72, 153, 0.18), 0 6px 14px rgba(0,0,0,0.06); border-color: rgba(236,72,153,0.32); }
+
+    .pill { display: inline-flex; padding: 6px 10px; border-radius: 999px; background: var(--brand-50); border: 1px solid rgba(236,72,153,0.25); color: #7c294f; font-weight: 600; font-size: 12px; }
+
+    .list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .list li { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; }
+    .meta { color: var(--muted); font-size: 14px; }
+
+    /* Footer */
+    footer { padding: 28px 20px 56px; text-align: center; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero .headshot { margin: 0 auto; }
+      .grid.two { grid-template-columns: 1fr; }
+      .grid.three { grid-template-columns: 1fr; }
+      .grid.four { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+
+    /* Animations */
+    @keyframes floatUp { from { transform: translateY(6px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+    .reveal { opacity: 0; transform: translateY(6px); }
+    .reveal.in { opacity: 1; transform: none; transition: opacity 500ms ease, transform 500ms ease; }
+
+    .animated-gradient {
+      background: linear-gradient(90deg, var(--brand-200), var(--brand-300), var(--brand-200));
+      background-size: 200% 200%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: gradientShift 8s ease-in-out infinite alternate;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cta, .card { transition: none; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .animated-gradient { animation: none; }
+    }
+
+    /* Utility */
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .sep { height: 1px; background: linear-gradient(90deg, rgba(236,72,153,0.0), rgba(236,72,153,0.25), rgba(236,72,153,0.0)); margin: 20px 0; }
+    .muted { color: var(--muted); }
+    .nowrap { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <a id="top" class="visually-hidden" href="#content">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Valeria Carazas</div>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#presentations">Talks</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="ValCar%20Resume.pdf" target="_blank" rel="noopener" title="View resume PDF">Download Résumé</a>
+    </div>
+  </header>
+
+  <main id="content">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="reveal in" style="animation: floatUp 700ms ease both;">
+        <span class="badge">Greater Atlanta • Open to Data Analytics & AI Roles</span>
+        <h1><span class="animated-gradient">Data Analytics & AI Engineering</span><br/>focused on Bayesian predictive modeling</h1>
+        <p class="lead">I'm Valeria Carazas, a recent M.S. graduate in Mathematical & Statistical Sciences (Clemson). I build reliable, decision‑ready models for industrial and logistical applications, drawing on Bayesian methods, statistical learning, and modern data tooling.</p>
+        <div class="hero-actions row">
+          <a class="cta" href="#contact">Contact Me</a>
+          <a class="cta" href="#projects" style="background: linear-gradient(135deg, var(--brand-300), var(--brand-400));">See Projects (soon)</a>
+        </div>
+        <div class="row muted" style="margin-top:10px;">
+          <span class="nowrap">📍 Lawrenceville, GA (Greater Atlanta)</span>
+          <span class="nowrap">•</span>
+          <span class="nowrap">📧 <a href="mailto:vcaraza@g.clemson.edu">vcaraza@g.clemson.edu</a></span>
+          <span class="nowrap">•</span>
+          <span class="nowrap">🔗 <a href="#" title="Add your LinkedIn URL">LinkedIn</a></span>
+          <span class="nowrap">•</span>
+          <span class="nowrap">💻 <a href="#" title="Add your GitHub profile URL">GitHub</a></span>
+        </div>
+      </div>
+      <div class="reveal" style="justify-self:center;">
+        <figure class="headshot" aria-label="Headshot placeholder">
+          <!-- If you add headshot.jpg, uncomment the img tag below and remove the initials -->
+          <!-- <img src="headshot.jpg" alt="Portrait of Valeria Carazas" /> -->
+          <span aria-hidden="true">VC</span>
+        </figure>
+      </div>
+    </section>
+
+    <section id="about" class="reveal">
+      <h2 class="section-title">About</h2>
+      <div class="grid two">
+        <div class="card">
+          <p>
+            I specialize in <strong>Bayesian predictive modeling</strong>, <strong>statistical inference</strong>, and
+            <strong>data‑driven decision support</strong>. I'm particularly interested in applications across
+            <strong>manufacturing engineering</strong>, <strong>logistics</strong>, and <strong>risk analysis</strong>.
+          </p>
+          <p class="muted">Actively seeking roles titled Data Analyst, Data Scientist (entry‑level), Machine Learning Engineer (junior), or AI Engineer.</p>
+        </div>
+        <div class="card">
+          <ul class="list">
+            <li><span>Recent degree</span> <span class="meta">M.S., Mathematical & Statistical Sciences — Clemson University (2024)</span></li>
+            <li><span>Focus areas</span> <span class="meta">Bayesian stats, GMMs, SVD/Autoencoders for compression, SPC, supply chain</span></li>
+            <li><span>Tooling</span> <span class="meta">Python, R, Julia, MATLAB · Excel/PowerBI · DevOps basics</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid four">
+        <div class="card">
+          <div class="pill">Programming</div>
+          <div class="sep"></div>
+          <div>Python · R · Julia · MATLAB</div>
+        </div>
+        <div class="card">
+          <div class="pill">Data & ML</div>
+          <div class="sep"></div>
+          <div>Bayesian models · GMMs · Statistical Inference · Linear/Advanced Data Analysis · Machine Learning</div>
+        </div>
+        <div class="card">
+          <div class="pill">Analytics & BI</div>
+          <div class="sep"></div>
+          <div>Excel · PowerBI · Microsoft Dynamics</div>
+        </div>
+        <div class="card">
+          <div class="pill">Other</div>
+          <div class="sep"></div>
+          <div>AutoCAD · OpenRocket · DevOps · SPC · Supply Chain concepts</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="reveal">
+      <h2 class="section-title">Experience</h2>
+      <div class="grid two">
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>Graduate Teacher of Record · Clemson University</strong>
+            <span class="meta">2023–2024</span>
+          </div>
+          <div class="meta">STAT 3090 — Introductory Business Statistics</div>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>Graduate Teaching Assistant · Clemson University</strong>
+            <span class="meta">2022–2023</span>
+          </div>
+          <div class="meta">STAT 2301 — Statistical Methods</div>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>Math & Statistics Tutor · Omega Learning Company</strong>
+            <span class="meta">2021–2022</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>Teaching Assistant & Tutor · University of North Georgia</strong>
+            <span class="meta">2020–2022</span>
+          </div>
+          <div class="meta">TA: Complex Analysis (MATH 4180), Graph Theory (MATH 3530), College Algebra (MATH 1111)</div>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>Administrative Assistant · HK Renovation Inc.</strong>
+            <span class="meta">2020–2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="reveal">
+      <h2 class="section-title">Education</h2>
+      <div class="grid two">
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>Clemson University — M.S. Mathematical & Statistical Sciences</strong>
+            <span class="meta">2022–2024 · GPA 3.50/4.00</span>
+          </div>
+          <ul class="list" style="margin-top:8px;">
+            <li><span>Advisor</span> <span class="meta">Dr. Deborah Kunkel</span></li>
+            <li><span>Project</span> <span class="meta">Effects of Priors in Gaussian Mixture Models: Shrinkage, Empty Components, and Overfitting</span></li>
+            <li><span>Coursework</span> <span class="meta">Bayesian Statistics, Advanced Data Analysis, Statistical Inference, Linear Analysis, Linear Programming</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <strong>University of North Georgia — B.S. Mathematics (Minor in Statistics)</strong>
+            <span class="meta">2019–2022 · GPA 3.93/4.00</span>
+          </div>
+          <div class="meta" style="margin-top:8px;">Coursework: Game Theory, Complex Analysis, Discrete Mathematics, Operations Research, Machine Learning</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentations" class="reveal">
+      <h2 class="section-title">Selected Presentations</h2>
+      <div class="grid two">
+        <div class="card">
+          <strong>Comparing SVD and Autoencoders for Data and Image Compression</strong>
+          <div class="meta">Atlanta Mathematics of Data Science Bootcamp, Emory University — Apr 2025</div>
+        </div>
+        <div class="card">
+          <strong>Gaussian Mixture Models in Higher Dimensions</strong>
+          <div class="meta">Math for All Conference, Clemson University — Apr 2024</div>
+        </div>
+        <div class="card">
+          <strong>Priors for Gaussian Mixture Models</strong>
+          <div class="meta">DECAL: Data Security & Machine Learning Workshop, Clemson — Feb 2024</div>
+        </div>
+        <div class="card">
+          <strong>A Game‑Theoretic Approach to the Traffic Light Problem</strong>
+          <div class="meta">Joint Mathematics Meetings, Seattle — Jan 2022</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="reveal">
+      <h2 class="section-title">Awards</h2>
+      <div class="grid two">
+        <div class="card">
+          <strong>Sobczyk Memorial Fellowship — Clemson University</strong>
+          <div class="meta">2022–2024</div>
+        </div>
+        <div class="card">
+          <strong>Outstanding Math Student Award — University of North Georgia</strong>
+          <div class="meta">2021–2022</div>
+        </div>
+        <div class="card">
+          <strong>Mathematics Achievement Award — University of North Georgia</strong>
+          <div class="meta">2019–2022</div>
+        </div>
+        <div class="card">
+          <strong>President’s Honor Roll (4.00 GPA) — University of North Georgia</strong>
+          <div class="meta">2019–2021</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <h2 class="section-title">Portfolio Projects</h2>
+      <p class="muted">Add your case studies here. Three example slots are scaffolded below.</p>
+      <div class="grid three">
+        <article class="card">
+          <div class="pill">Coming soon</div>
+          <h3 style="margin:10px 0 6px;">Predictive Maintenance with Bayesian Hierarchical Models</h3>
+          <p class="muted">Failure prediction for manufacturing assets; hierarchical priors, posterior predictive checks, uncertainty‑aware scheduling.</p>
+          <div class="row"><a href="#" aria-disabled="true">Read case study</a><span class="muted">•</span><a href="#" aria-disabled="true">Code</a></div>
+        </article>
+        <article class="card">
+          <div class="pill">Coming soon</div>
+          <h3 style="margin:10px 0 6px;">Demand Forecasting for Supply Chain</h3>
+          <p class="muted">Probabilistic time‑series with exogenous features; calibration and coverage metrics; what‑if scenario analysis.</p>
+          <div class="row"><a href="#" aria-disabled="true">Read case study</a><span class="muted">•</span><a href="#" aria-disabled="true">Code</a></div>
+        </article>
+        <article class="card">
+          <div class="pill">Coming soon</div>
+          <h3 style="margin:10px 0 6px;">Image Compression: SVD vs Autoencoders</h3>
+          <p class="muted">Benchmarking reconstruction error vs. compression ratio; regularization strategies; ablation studies.</p>
+          <div class="row"><a href="#" aria-disabled="true">Read case study</a><span class="muted">•</span><a href="#" aria-disabled="true">Code</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid two">
+        <div class="card">
+          <p><strong>Email:</strong> <a id="email-link" href="mailto:vcaraza@g.clemson.edu">vcaraza@g.clemson.edu</a>
+            <button id="copy-email" class="cta" style="margin-left:10px; padding:6px 10px; font-size:14px;">Copy</button></p>
+          <p><strong>Location:</strong> Lawrenceville, GA (Greater Atlanta)</p>
+          <p><strong>LinkedIn:</strong> <a href="#" id="linkedin">Add your LinkedIn URL</a></p>
+          <p><strong>GitHub:</strong> <a href="#" id="github">Add your GitHub URL</a></p>
+        </div>
+        <div class="card">
+          <p class="muted" style="margin-top:0;">Prefer email? Click the address to open your mail client, or use the button to copy it to your clipboard. You can also link an ATS‑friendly résumé PDF via the header button.</p>
+          <div class="sep"></div>
+          <p class="muted">Pro‑tip: include a short professional summary in your résumé and mirror it in the About section to keep your narrative consistent.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="sep"></div>
+      <div>© <span id="year"></span> Valeria Carazas • All rights reserved • <a href="#top">Back to top</a></div>
+    </footer>
+  </main>
+
+  <script>
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          observer.unobserve(e.target);
+        }
+      }
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (!el.classList.contains('in')) observer.observe(el);
+    });
+
+    // Copy email to clipboard
+    document.getElementById('copy-email')?.addEventListener('click', async () => {
+      const email = 'vcaraza@g.clemson.edu';
+      try {
+        await navigator.clipboard.writeText(email);
+        const btn = document.getElementById('copy-email');
+        const prev = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = prev), 1400);
+      } catch (err) {
+        alert('Copy failed — you can copy manually: ' + email);
+      }
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Valeria Carazas",
+    "email": "mailto:vcaraza@g.clemson.edu",
+    "address": {"@type": "PostalAddress", "addressLocality": "Lawrenceville", "addressRegion": "GA", "addressCountry": "US"},
+    "alumniOf": [
+      {"@type": "CollegeOrUniversity", "name": "Clemson University"},
+      {"@type": "CollegeOrUniversity", "name": "University of North Georgia"}
+    ],
+    "description": "Data Analytics & AI Engineering with focus on Bayesian predictive modeling.",
+    "knowsAbout": ["Bayesian statistics", "Gaussian mixture models", "predictive modeling", "data analytics", "machine learning"],
+    "url": "",
+    "sameAs": ["", ""]
+  }
+  </script>
+</body>
+</html>
